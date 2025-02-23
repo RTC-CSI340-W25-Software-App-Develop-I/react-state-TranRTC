@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import "../data/data.js"
+import { data } from '../data/data.js';
 function AddRestaurant({ updateRestaurants }) {
   const [formData, setFormData] = useState({
     name: "",
@@ -15,8 +17,22 @@ function AddRestaurant({ updateRestaurants }) {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const newId = data.length > 0 ? data[data.length - 1].id + 1 : 1; // calculate the sequential new id
+
+    const newRestaurant = {
+      id: newId, //Assign the calculated sequential ID
+      ...formData,
+    };
+
+    console.log("New Restaurant:", newRestaurant); // Debug for verification
+
+    // Add the new restaurant to the restaurants list
+    updateRestaurants(newRestaurant);
+
+
     console.log(formData)
-    updateRestaurants(formData)
+    //updateRestaurants(formData)
     // clear the form after submitting
     setFormData({
       name: "",
