@@ -8,8 +8,7 @@ function AddRestaurant({ updateRestaurants }) {
     rating: ""
   });
 
-  const handleChange = (e) => {
-    e.preventDefault();
+  const handleChange = (e) => {    
     const name = e.target.name
     const value = e.target.value
     setFormData({ ...formData, [name]: value });
@@ -18,6 +17,14 @@ function AddRestaurant({ updateRestaurants }) {
     e.preventDefault();
     console.log(formData)
     updateRestaurants(formData)
+    // clear the form after submitting
+    setFormData({
+      name: "",
+      address: "",
+      phone: "",
+      cuisine: "",
+      rating: ""
+    });
   };
 
   return (
